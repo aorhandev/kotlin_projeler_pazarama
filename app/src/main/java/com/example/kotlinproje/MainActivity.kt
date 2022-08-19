@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-fun main(){
+fun main1(){
 
     var urunler = HashMap<String, Int>()
     var kategoriler = HashMap<String,HashMap<String,Int>>()
@@ -48,6 +48,33 @@ fun main(){
     // eğer 5 ten büyükse sayıların aritmetik ortalamasını hesaplayıp kendisine gönderilen
     // farklı bir işleve gönderen fonksiyonu yazınız.
 
+}
 
+fun main(){
+    var sayilar = arrayListOf<Int>(1,2,3,4,5,6,7)
+
+    aritmatikOrtalama(sayilar, ::ortalama)
+}
+
+fun ortalama(dizi : ArrayList<Int>): String{
+    var elemanSayisi = dizi.count()
+    var sonuc = 0
+
+    for (i in dizi){
+        sonuc += i
+    }
+
+    var aritmatikOrtalamaSonuc = sonuc/elemanSayisi
+    return println(aritmatikOrtalamaSonuc).toString()
+}
+
+fun aritmatikOrtalama(dizi: ArrayList<Int>,ortalama : (ArrayList<Int>)-> String){
+    var elemanSayisi = dizi.count()
+
+    if( elemanSayisi < 5 ){
+        println("Eleman sayısı yetersiz")
+    }else {
+        ortalama(dizi)
+    }
 
 }
