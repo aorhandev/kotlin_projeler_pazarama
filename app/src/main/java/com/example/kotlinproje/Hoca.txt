@@ -1,0 +1,188 @@
+package com.example.kotlinproje
+
+/*E-ticaret ürün modellemesi
+- Bir e-ticaret sisteminde kullanılacak ürün ve kategori sistemi modellenecektir.
+
+- Kategorilerin ad ve üst kategorisi bulunacaktır.
+
+- Ürünlerin marka, ad, kısa açıklama, detay açıklama, fiyat bilgileri bulunacaktır.
+
+- Markaların sadece ad bilgisi olabilecektir.
+
+- Ürünlerin birden fazla kategorisi bulunabilir.*/
+class Marka(val Ad : String)
+
+class Kategori(var Ad : String)
+{
+    var UstKategori : Kategori? = null
+}
+class Urun(var fiyat : Float, var Marka : Marka)
+{
+    lateinit var Ad : String
+    var KisaAciklama : String? = null
+    var DetayAciklama : String? = null
+
+    var Kategoriler = ArrayList<Kategori>()
+
+    fun kategoriEkle(kategori : Kategori)
+    {
+        Kategoriler.add(kategori)
+    }
+}
+
+// Data class
+data class DC (val d1 : String)
+{
+    var d2 : String = ""
+}
+
+fun main()
+{
+    var dc = DC("")
+    var dc1 = dc.copy()
+    var dc2 = dc.copy("asda")
+    dc.component1()
+
+    var h = Hesapla()
+    var h2 = Hesapla()
+    var h3 = Hesapla()
+//    h.karekokHesapla()
+    Hesapla.karekokHesapla()
+    Hesapla.karekokHesapla()
+    Hesapla.karekokHesapla()
+
+    Hesapla2.karekokHesapla()
+    Hesapla.Hesapla3.karekokHesapla()
+
+
+    var c = Cinsiyet.Erkek
+    var ci = 0
+
+    if (c == Cinsiyet.Erkek)
+    {
+        println("erkek")
+    }
+    else
+    {
+        println("kadin")
+    }
+
+    var k = Kare(2)
+    k.ciz()
+}
+
+// Companion Object - Object
+class Hesapla
+{
+
+    companion object
+    {
+        var v  = 10
+        fun karekokHesapla()
+        {
+            println("karekök hesabı")
+        }
+    }
+
+    object Hesapla3
+    {
+        fun karekokHesapla()
+        {
+            println("karekök hesabı")
+        }
+    }
+}
+
+object Hesapla2
+{
+    fun karekokHesapla()
+    {
+        println("karekök hesabı")
+    }
+}
+
+// Enumaration
+enum class Cinsiyet(var kod : Int)
+{
+    Erkek(0),
+    Kadin(1);
+
+    fun kodGoster()
+    {
+        println(kod)
+    }
+}
+
+// Kalıtım
+class Kare(ks: Int) : Sekil(ks)
+{
+    //var kenarSayisi = 0
+    var kenar = 0
+    /*
+    fun ciz()
+    {
+        println("çiz")
+    }*/
+
+    fun kareF()
+    {
+
+    }
+    override fun ciz()
+    {
+        println("kare çiz")
+        super.ciz()
+    }
+}
+
+class Dikdortgen : Sekil
+{
+    //var kenarSayisi = 0
+    var kisaKenar = 0
+    var uzunKenar= 0
+    /*
+    fun ciz()
+    {
+        println("çiz")
+    }*/
+
+    constructor(ks : Int) : super()
+    {
+
+    }
+
+    fun dF()
+    {
+
+    }
+}
+
+open class Sekil(var kenarSayisi : Int = 0)
+{
+
+
+    open fun ciz()
+    {
+        println("çiz")
+    }
+
+}
+
+/*
+Kitapevi Modellemesi
+
+Kütüphanedeki kaynaklar farklı kategorilerde olabilmekte ve her kaynağın ISBN numarası, Adı ve yazarı bulunmaktadır.
+
+Kaynaklar Kitap, Ansiklopedi, Dergi türlerinde olabilir.
+
+Kitapevine üye kişiler bulunur ve kişilerin Ad, Soyad ve üye numarası zorunlu olmakla birlikte telefon numarası ve adres bilgileri de bulunabilir.
+
+Üyeler farklı türlerde olabilir. Misafir, Üye, Müdavim
+
+Misafirler sadece 1 kitap alabilirler
+Üyeler 3 kitap alabilir
+Müdavimler ise sınırsız sayıda kitap alabilirler.
+
+Bu modellemeyi yaparak, örnek kayıtlar ile kitaplar ve üyeler oluşturup üyelerin bu kaynaklardan bazılarını aldığı örnek uygulamayı oluşturunuz.
+
+*/
